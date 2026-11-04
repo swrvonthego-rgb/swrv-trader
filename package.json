@@ -1,0 +1,14 @@
+{
+  "name": "swrv-trader",
+  "version": "1.0.0",
+  "description": "SWRV On The Go — AI trading bot. Paper trading via Alpaca.",
+  "type": "module",
+  "scripts": {
+    "dev": "node src/run-once.js",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

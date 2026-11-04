@@ -1,0 +1,21 @@
+name = "swrv-trader"
+main = "worker/index.js"
+compatibility_date = "2024-11-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Cron: every minute during market hours Mon-Fri
+# Cloudflare cron runs in UTC — 9:35am-3:45pm ET = 14:35-20:45 UTC
+[triggers]
+crons = [
+  "35-59 14 * * 1-5",   # 9:35am-9:59am ET
+  "* 15-19 * * 1-5",    # 10:00am-2:59pm ET
+  "0-45 20 * * 1-5",    # 3:00pm-3:45pm ET
+]
+
+# KV namespace — create with: wrangler kv:namespace create SWRV_KV
+[[kv_namespaces]]
+binding = "SWRV_KV"
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+
+# Secrets — set with: wrangler secret put ALPACA_API_KEY
+# [vars] — don't put secrets here, use wrangler secret put
